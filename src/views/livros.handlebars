@@ -1,0 +1,73 @@
+
+<h2>Biblioteca</h2>
+
+<p>{{total}} títulos · {{totalExemplares}} exemplares</p>
+
+<form action="/livros" method="POST">
+  <input
+    type="text"
+    name="titulo"
+    placeholder="Título"
+    required
+  />
+
+  <input
+    type="text"
+    name="autor"
+    placeholder="Autor"
+    required
+  />
+
+  <input
+    type="number"
+    name="ano"
+    placeholder="Ano"
+    required
+  />
+
+  <input
+    type="number"
+    name="exemplares"
+    placeholder="Exemplares"
+    min="1"
+    required
+  />
+
+  <button type="submit">Cadastrar</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Ano</th>
+      <th>Disponíveis</th>
+      <th>Situação</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each livros}}
+      <tr>
+        <td>{{codigo}}</td>
+        <td>{{titulo}}</td>
+        <td>{{autor}}</td>
+        <td>{{ano}}</td>
+        <td>{{disponiveis}} de {{exemplares}}</td>
+        <td>
+          {{#if disponivel}}
+            <span style="color: green">{{situacao}}</span>
+          {{else}}
+            <span style="color: red">{{situacao}}</span>
+          {{/if}}
+        </td>
+      </tr>
+    {{else}}
+      <tr>
+        <td colspan="6">Nenhum livro cadastrado</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
